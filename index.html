@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>却惑几菩提 - 链接变更公告</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            font-family: "楷体", "STKaiti", serif;
+            font-family: "楷体", "STKaiti", "Microsoft YaHei", sans-serif;
             background-color: #f8f4e9;
             background-image: url('https://img.freepik.com/free-photo/old-paper-texture_1194-5416.jpg');
             background-size: cover;
+            background-attachment: fixed;
             margin: 0;
-            padding: 0;
-            height: 100vh;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,15 +27,28 @@
         }
         
         .announcement-container {
-            background-color: rgba(255, 253, 245, 0.85);
+            background-color: rgba(255, 253, 245, 0.9);
             border: 1px solid #d1c7b7;
-            border-radius: 0;
-            width: 80%;
+            border-radius: 8px;
+            width: 90%;
             max-width: 600px;
-            padding: 40px;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .announcement-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         h1 {
@@ -39,11 +59,23 @@
             letter-spacing: 5px;
             border-bottom: 1px solid #d1c7b7;
             padding-bottom: 15px;
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -1px;
+            width: 50px;
+            height: 2px;
+            background-color: #c7254e;
+            transform: translateX(-50%);
         }
         
         p {
             font-size: 18px;
-            line-height: 2;
+            line-height: 1.8;
             margin-bottom: 25px;
             text-align: left;
             text-indent: 2em;
@@ -52,36 +84,56 @@
         .link-container {
             margin: 30px 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .old-link, .new-link {
             display: block;
-            padding: 10px;
+            padding: 15px;
             margin: 15px auto;
             font-family: "宋体", "SimSun", serif;
             word-break: break-all;
             position: relative;
-            max-width: 80%;
+            max-width: 100%;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .old-link {
+            background-color: rgba(199, 37, 78, 0.05);
+            border-left: 3px solid #c7254e;
+            padding-left: 40px;
+        }
+        
+        .new-link {
+            background-color: rgba(61, 153, 112, 0.05);
+            border-left: 3px solid #3d9970;
+            padding-left: 40px;
         }
         
         .old-link::before {
             content: "旧";
             position: absolute;
-            left: -30px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: #c7254e;
             font-size: 14px;
+            font-weight: bold;
         }
         
         .new-link::before {
             content: "新";
             position: absolute;
-            left: -30px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: #3d9970;
             font-size: 14px;
+            font-weight: bold;
         }
         
         .divider {
@@ -93,25 +145,51 @@
         
         .btn {
             display: inline-block;
-            background-color: transparent;
+            background-color: rgba(139, 107, 74, 0.05);
             color: #8b6b4a;
-            padding: 10px 30px;
+            padding: 12px 35px;
             border: 1px solid #8b6b4a;
+            border-radius: 30px;
             text-decoration: none;
             margin-top: 20px;
             transition: all 0.3s ease;
             font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #8b6b4a;
+            transition: all 0.4s ease;
+            z-index: -1;
         }
         
         .btn:hover {
-            background-color: #8b6b4a;
             color: #f8f4e9;
         }
         
+        .btn:hover:before {
+            left: 0;
+        }
+        
         .lotus {
-            font-size: 24px;
-            margin: 15px 0;
+            font-size: 28px;
+            margin: 20px 0;
             color: #d4a373;
+            animation: rotate 10s linear infinite;
+            display: inline-block;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .notice {
@@ -126,32 +204,117 @@
             font-family: "篆书", "STZhongsong", serif;
             color: #c7254e;
             font-size: 16px;
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+        }
+        
+        .seal::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(199, 37, 78, 0.2);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .announcement-container {
+                width: 95%;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+                letter-spacing: 3px;
+                padding-bottom: 12px;
+            }
+            
+            p {
+                font-size: 16px;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
+            
+            .old-link, .new-link {
+                padding: 12px 10px 12px 40px;
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 15px;
+            }
+            
+            .lotus {
+                font-size: 24px;
+                margin: 15px 0;
+            }
+            
+            .notice {
+                font-size: 13px;
+            }
+            
+            .seal {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .announcement-container {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                letter-spacing: 2px;
+            }
+            
+            p {
+                font-size: 15px;
+                text-indent: 1.5em;
+            }
+            
+            .old-link, .new-link {
+                font-size: 13px;
+                padding: 10px 8px 10px 35px;
+            }
+            
+            .old-link::before, .new-link::before {
+                left: 8px;
+                font-size: 12px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="announcement-container">
         <h1>链接变更启事</h1>
-        
         <p>诸位善知识：</p>
-        
         <p>因缘和合，法缘殊胜。却惑几菩提为提供更佳服务，现已迁至新址。</p>
         <a href="https://qhgpt.aihub.ren/" class="btn">前往新道场</a>
         <div class="lotus">☸</div>
-        
         <div class="link-container">
             <div class="old-link">原临时链接（已失效）：https://qhgptbf.aihub.ren/</div>
             <div class="new-link">新常驻地址：https://qhgpt.aihub.ren/</div>
         </div>
-        
         <hr class="divider">
-        
         <p>请诸位移步新址，继续参禅问道。</p>
-        
-        
-        
         <div class="notice">感恩诸位护持，愿共证菩提</div>
-        
         <div class="seal">却惑几菩提 合十</div>
     </div>
 </body>
